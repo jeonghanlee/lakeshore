@@ -18,6 +18,11 @@ example_DBD += drvAsynIPPort.dbd
 example_DBD += stream.dbd
 example_DBD += asSupport.dbd
 
+ifneq ($(CALC),)
+example_DBD += calcSupport.dbd
+example_DBD += transformRecord.dbd
+endif
+
 # example_registerRecordDeviceDriver.cpp derives from example.dbd
 example_SRCS += example_registerRecordDeviceDriver.cpp
 
@@ -32,6 +37,10 @@ example_SRCS_vxWorks += -nil-
 example_LIBS += asyn
 example_LIBS += stream
 example_LIBS += autosave
+
+ifneq ($(CALC),)
+example_LIBS += calc
+endif
 
 # Finally link to the EPICS Base libraries
 example_LIBS += $(EPICS_BASE_IOC_LIBS)
